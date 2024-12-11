@@ -4,6 +4,10 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}
+
 jobs:
   build:
     name: Build
