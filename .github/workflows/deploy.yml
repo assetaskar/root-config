@@ -19,3 +19,15 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
+
+      - name: Log in to the Container registry
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login $REGISTRY -u $ --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t $REGISTRY/$IMAGE:stage .
+
+      - name: Push docker image
+        run: docker push $REGISTRY/$IMAGE:stage
+
+      - name: Deploy
+        run: ls -lah
