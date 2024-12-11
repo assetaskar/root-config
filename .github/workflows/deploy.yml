@@ -6,19 +6,27 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
-
       - name: Install PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build...
+        run: pnpm build
 
       - name: Log in to the Container registry
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login $REGISTRY -u $ --password-stdin
@@ -29,5 +37,5 @@ jobs:
       - name: Push docker image
         run: docker push $REGISTRY/$IMAGE:stage
 
-      - name: Deploy
+      - name: Deploy webhook
         run: ls -lah

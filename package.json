@@ -2,6 +2,7 @@
   "name": "root-config",
   "version": "1.0.0",
   "description": "A single-spa using vite and typescript.",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
