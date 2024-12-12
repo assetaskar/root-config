@@ -20,14 +20,16 @@
   <main style="min-height: inherit" class="w-full">
     <div>
 <!--      <application name="navbar"></application>-->
-      <application name="@single-spa/welcome"></application>
+<!--      <application name="@single-spa/welcome"></application>-->
+      <h1>Root H1</h1>
+      <br/>
     </div>
     <div class="main">
+      <route default>
+        <application name="app1"></application>
+      </route>
       <route path="app2">
         <application name="app2"></application>
-      </route>
-      <route path="app1">
-        <application name="app1"></application>
       </route>
     </div>
   </main>
